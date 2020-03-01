@@ -1,0 +1,38 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Publish",
+        "iot:Receive"
+      ],
+      "Resource": [
+        "arn:aws:iot:eu-west-1:803867439704:topic/home/meting",
+        "arn:aws:iot:eu-west-1:803867439704:topic/home/debug"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Subscribe"
+      ],
+      "Resource": [
+        "arn:aws:iot:eu-west-1:803867439704:topicfilter/home/meting",
+        "arn:aws:iot:eu-west-1:803867439704:topicfilter/home/debug"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect"
+      ],
+      "Resource": [
+        "arn:aws:iot:eu-west-1:803867439704:client/sdk-java",
+        "arn:aws:iot:eu-west-1:803867439704:client/basicPubSub",
+        "arn:aws:iot:eu-west-1:803867439704:client/sdk-nodejs-*",
+        "arn:aws:iot:eu-west-1:803867439704:client/emon-server"
+      ]
+    }
+  ]
+}

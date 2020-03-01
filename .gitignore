@@ -1,0 +1,86 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+#WORKSPACE
+.vscode/*
+
+# EMON_CLIENT
+# compiled output
+/emon-client/dist
+/emon-client/tmp
+/emon-client/out-tsc
+# Only exists if Bazel was run
+/emon-client/bazel-out
+
+# dependencies
+/emon-client/node_modules
+
+# profiling files
+/emon-client/chrome-profiler-events*.json
+/emon-client/speed-measure-plugin*.json
+
+# IDEs and editors
+/emon-client/.idea
+/emon-client/.project
+/emon-client/.classpath
+/emon-client/.c9/
+/emon-client/*.launch
+/emon-client/.settings/
+/emon-client/*.sublime-workspace
+
+# IDE - VSCode
+/emon-client/.vscode/*
+/emon-client/!.vscode/settings.json
+/emon-client/!.vscode/tasks.json
+/emon-client/!.vscode/launch.json
+/emon-client/!.vscode/extensions.json
+/emon-client/.history/*
+
+# misc
+/emon-client/.sass-cache
+/emon-client/connect.lock
+/emon-client/coverage
+/emon-client/libpeerconnection.log
+/emon-client/npm-debug.log
+/emon-client/yarn-error.log
+/emon-client/testem.log
+/emon-client/typings
+
+# System Files
+/emon-client/.DS_Store
+/emon-client/Thumbs.db
+
+#EMON-SERVER
+# compiled output
+/emon-server/dist
+/emon-server/node_modules
+
+# Logs
+/emon-server/logs
+/emon-server/*.log
+/emon-server/npm-debug.log*
+/emon-server/yarn-debug.log*
+/emon-server/yarn-error.log*
+/emon-server/lerna-debug.log*
+
+# OS
+/emon-server/.DS_Store
+
+# Tests
+/emon-server/coverage
+/emon-server/.nyc_output
+
+# IDEs and editors
+/emon-server/.idea
+/emon-server/.project
+/emon-server/.classpath
+/emon-server/.c9/
+/emon-server/*.launch
+/emon-server/.settings/
+/emon-server/*.sublime-workspace
+
+# IDE - VSCode
+/emon-server/.vscode/*
+/emon-server/!.vscode/settings.json
+/emon-server/!.vscode/tasks.json
+/emon-server/!.vscode/launch.json
+/emon-server/!.vscode/extensions.json

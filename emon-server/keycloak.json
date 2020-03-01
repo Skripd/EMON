@@ -1,0 +1,8 @@
+{
+  "realm": "emon",
+  "bearer-only": true,
+  "auth-server-url": "http://localhost:8080/auth",
+  "ssl-required": "external",
+  "resource": "emon-server",
+  "confidential-port": 0
+}
