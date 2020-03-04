@@ -1,11 +1,11 @@
 type Measurement {
   id: ID! @id
-  gasUsage: Int!
-  usageHigh: Int!
-  usageLow: Int!
-  returnHigh: Int!
-  returnLow: Int!
-  currentUsage: Int!
+  gasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  currentUsage: Float!
   dateRecorded: DateTime! @unique
   dateAddedToDatabase: DateTime! @createdAt
 }
