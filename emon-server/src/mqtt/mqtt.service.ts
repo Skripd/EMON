@@ -1,14 +1,14 @@
 import { Injectable, Scope } from '@nestjs/common';
-import { device, DeviceOptions } from 'aws-iot-device-sdk';
+import { device } from 'aws-iot-device-sdk';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable({ scope: Scope.DEFAULT })
 export class MqttService {
     // 09e9572950-
     device: device = new device({
-        keyPath: 'C:\\Users\\thefr\\source\\repos\\EMON\\emon-server\\certs\\private.pem.key',
-        certPath: 'C:\\Users\\thefr\\source\\repos\\EMON\\emon-server\\certs\\certificate.pem.crt',
-        caPath: 'C:\\Users\\thefr\\source\\repos\\EMON\\emon-server\\certs\\AmazonRootCA1.pem',
+        keyPath: 'certs/private.pem.key',
+        certPath: 'certs/certificate.pem.crt',
+        caPath: 'certs/AmazonRootCA1.pem',
         clientId: 'emon-server',
         host: 'a16v9t42ie8npd-ats.iot.eu-west-1.amazonaws.com',
         port: 8883,

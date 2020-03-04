@@ -68,12 +68,12 @@ scalar Long
 
 type Measurement implements Node {
   id: ID!
-  gasUsage: Int!
-  usageHigh: Int!
-  usageLow: Int!
-  returnHigh: Int!
-  returnLow: Int!
-  currentUsage: Int!
+  gasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  currentUsage: Float!
   dateRecorded: DateTime!
   dateAddedToDatabase: DateTime!
 }
@@ -90,12 +90,12 @@ type MeasurementConnection {
 
 input MeasurementCreateInput {
   id: ID
-  gasUsage: Int!
-  usageHigh: Int!
-  usageLow: Int!
-  returnHigh: Int!
-  returnLow: Int!
-  currentUsage: Int!
+  gasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  currentUsage: Float!
   dateRecorded: DateTime!
 }
 
@@ -131,12 +131,12 @@ enum MeasurementOrderByInput {
 
 type MeasurementPreviousValues {
   id: ID!
-  gasUsage: Int!
-  usageHigh: Int!
-  usageLow: Int!
-  returnHigh: Int!
-  returnLow: Int!
-  currentUsage: Int!
+  gasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  currentUsage: Float!
   dateRecorded: DateTime!
   dateAddedToDatabase: DateTime!
 }
@@ -173,22 +173,22 @@ input MeasurementSubscriptionWhereInput {
 }
 
 input MeasurementUpdateInput {
-  gasUsage: Int
-  usageHigh: Int
-  usageLow: Int
-  returnHigh: Int
-  returnLow: Int
-  currentUsage: Int
+  gasUsage: Float
+  usageHigh: Float
+  usageLow: Float
+  returnHigh: Float
+  returnLow: Float
+  currentUsage: Float
   dateRecorded: DateTime
 }
 
 input MeasurementUpdateManyMutationInput {
-  gasUsage: Int
-  usageHigh: Int
-  usageLow: Int
-  returnHigh: Int
-  returnLow: Int
-  currentUsage: Int
+  gasUsage: Float
+  usageHigh: Float
+  usageLow: Float
+  returnHigh: Float
+  returnLow: Float
+  currentUsage: Float
   dateRecorded: DateTime
 }
 
@@ -235,138 +235,138 @@ input MeasurementWhereInput {
 
   """All values not ending with the given string."""
   id_not_ends_with: ID
-  gasUsage: Int
+  gasUsage: Float
 
   """All values that are not equal to given value."""
-  gasUsage_not: Int
+  gasUsage_not: Float
 
   """All values that are contained in given list."""
-  gasUsage_in: [Int!]
+  gasUsage_in: [Float!]
 
   """All values that are not contained in given list."""
-  gasUsage_not_in: [Int!]
+  gasUsage_not_in: [Float!]
 
   """All values less than the given value."""
-  gasUsage_lt: Int
+  gasUsage_lt: Float
 
   """All values less than or equal the given value."""
-  gasUsage_lte: Int
+  gasUsage_lte: Float
 
   """All values greater than the given value."""
-  gasUsage_gt: Int
+  gasUsage_gt: Float
 
   """All values greater than or equal the given value."""
-  gasUsage_gte: Int
-  usageHigh: Int
+  gasUsage_gte: Float
+  usageHigh: Float
 
   """All values that are not equal to given value."""
-  usageHigh_not: Int
+  usageHigh_not: Float
 
   """All values that are contained in given list."""
-  usageHigh_in: [Int!]
+  usageHigh_in: [Float!]
 
   """All values that are not contained in given list."""
-  usageHigh_not_in: [Int!]
+  usageHigh_not_in: [Float!]
 
   """All values less than the given value."""
-  usageHigh_lt: Int
+  usageHigh_lt: Float
 
   """All values less than or equal the given value."""
-  usageHigh_lte: Int
+  usageHigh_lte: Float
 
   """All values greater than the given value."""
-  usageHigh_gt: Int
+  usageHigh_gt: Float
 
   """All values greater than or equal the given value."""
-  usageHigh_gte: Int
-  usageLow: Int
+  usageHigh_gte: Float
+  usageLow: Float
 
   """All values that are not equal to given value."""
-  usageLow_not: Int
+  usageLow_not: Float
 
   """All values that are contained in given list."""
-  usageLow_in: [Int!]
+  usageLow_in: [Float!]
 
   """All values that are not contained in given list."""
-  usageLow_not_in: [Int!]
+  usageLow_not_in: [Float!]
 
   """All values less than the given value."""
-  usageLow_lt: Int
+  usageLow_lt: Float
 
   """All values less than or equal the given value."""
-  usageLow_lte: Int
+  usageLow_lte: Float
 
   """All values greater than the given value."""
-  usageLow_gt: Int
+  usageLow_gt: Float
 
   """All values greater than or equal the given value."""
-  usageLow_gte: Int
-  returnHigh: Int
+  usageLow_gte: Float
+  returnHigh: Float
 
   """All values that are not equal to given value."""
-  returnHigh_not: Int
+  returnHigh_not: Float
 
   """All values that are contained in given list."""
-  returnHigh_in: [Int!]
+  returnHigh_in: [Float!]
 
   """All values that are not contained in given list."""
-  returnHigh_not_in: [Int!]
+  returnHigh_not_in: [Float!]
 
   """All values less than the given value."""
-  returnHigh_lt: Int
+  returnHigh_lt: Float
 
   """All values less than or equal the given value."""
-  returnHigh_lte: Int
+  returnHigh_lte: Float
 
   """All values greater than the given value."""
-  returnHigh_gt: Int
+  returnHigh_gt: Float
 
   """All values greater than or equal the given value."""
-  returnHigh_gte: Int
-  returnLow: Int
+  returnHigh_gte: Float
+  returnLow: Float
 
   """All values that are not equal to given value."""
-  returnLow_not: Int
+  returnLow_not: Float
 
   """All values that are contained in given list."""
-  returnLow_in: [Int!]
+  returnLow_in: [Float!]
 
   """All values that are not contained in given list."""
-  returnLow_not_in: [Int!]
+  returnLow_not_in: [Float!]
 
   """All values less than the given value."""
-  returnLow_lt: Int
+  returnLow_lt: Float
 
   """All values less than or equal the given value."""
-  returnLow_lte: Int
+  returnLow_lte: Float
 
   """All values greater than the given value."""
-  returnLow_gt: Int
+  returnLow_gt: Float
 
   """All values greater than or equal the given value."""
-  returnLow_gte: Int
-  currentUsage: Int
+  returnLow_gte: Float
+  currentUsage: Float
 
   """All values that are not equal to given value."""
-  currentUsage_not: Int
+  currentUsage_not: Float
 
   """All values that are contained in given list."""
-  currentUsage_in: [Int!]
+  currentUsage_in: [Float!]
 
   """All values that are not contained in given list."""
-  currentUsage_not_in: [Int!]
+  currentUsage_not_in: [Float!]
 
   """All values less than the given value."""
-  currentUsage_lt: Int
+  currentUsage_lt: Float
 
   """All values less than or equal the given value."""
-  currentUsage_lte: Int
+  currentUsage_lte: Float
 
   """All values greater than the given value."""
-  currentUsage_gt: Int
+  currentUsage_gt: Float
 
   """All values greater than or equal the given value."""
-  currentUsage_gte: Int
+  currentUsage_gte: Float
   dateRecorded: DateTime
 
   """All values that are not equal to given value."""
@@ -502,12 +502,12 @@ export type MutationType =   'CREATED' |
 
 export interface MeasurementCreateInput {
   id?: ID_Input | null
-  gasUsage: Int
-  usageHigh: Int
-  usageLow: Int
-  returnHigh: Int
-  returnLow: Int
-  currentUsage: Int
+  gasUsage: Float
+  usageHigh: Float
+  usageLow: Float
+  returnHigh: Float
+  returnLow: Float
+  currentUsage: Float
   dateRecorded: DateTime
 }
 
@@ -521,22 +521,22 @@ export interface MeasurementSubscriptionWhereInput {
 }
 
 export interface MeasurementUpdateInput {
-  gasUsage?: Int | null
-  usageHigh?: Int | null
-  usageLow?: Int | null
-  returnHigh?: Int | null
-  returnLow?: Int | null
-  currentUsage?: Int | null
+  gasUsage?: Float | null
+  usageHigh?: Float | null
+  usageLow?: Float | null
+  returnHigh?: Float | null
+  returnLow?: Float | null
+  currentUsage?: Float | null
   dateRecorded?: DateTime | null
 }
 
 export interface MeasurementUpdateManyMutationInput {
-  gasUsage?: Int | null
-  usageHigh?: Int | null
-  usageLow?: Int | null
-  returnHigh?: Int | null
-  returnLow?: Int | null
-  currentUsage?: Int | null
+  gasUsage?: Float | null
+  usageHigh?: Float | null
+  usageLow?: Float | null
+  returnHigh?: Float | null
+  returnLow?: Float | null
+  currentUsage?: Float | null
   dateRecorded?: DateTime | null
 }
 
@@ -556,54 +556,54 @@ export interface MeasurementWhereInput {
   id_not_starts_with?: ID_Input | null
   id_ends_with?: ID_Input | null
   id_not_ends_with?: ID_Input | null
-  gasUsage?: Int | null
-  gasUsage_not?: Int | null
-  gasUsage_in?: Int[] | Int | null
-  gasUsage_not_in?: Int[] | Int | null
-  gasUsage_lt?: Int | null
-  gasUsage_lte?: Int | null
-  gasUsage_gt?: Int | null
-  gasUsage_gte?: Int | null
-  usageHigh?: Int | null
-  usageHigh_not?: Int | null
-  usageHigh_in?: Int[] | Int | null
-  usageHigh_not_in?: Int[] | Int | null
-  usageHigh_lt?: Int | null
-  usageHigh_lte?: Int | null
-  usageHigh_gt?: Int | null
-  usageHigh_gte?: Int | null
-  usageLow?: Int | null
-  usageLow_not?: Int | null
-  usageLow_in?: Int[] | Int | null
-  usageLow_not_in?: Int[] | Int | null
-  usageLow_lt?: Int | null
-  usageLow_lte?: Int | null
-  usageLow_gt?: Int | null
-  usageLow_gte?: Int | null
-  returnHigh?: Int | null
-  returnHigh_not?: Int | null
-  returnHigh_in?: Int[] | Int | null
-  returnHigh_not_in?: Int[] | Int | null
-  returnHigh_lt?: Int | null
-  returnHigh_lte?: Int | null
-  returnHigh_gt?: Int | null
-  returnHigh_gte?: Int | null
-  returnLow?: Int | null
-  returnLow_not?: Int | null
-  returnLow_in?: Int[] | Int | null
-  returnLow_not_in?: Int[] | Int | null
-  returnLow_lt?: Int | null
-  returnLow_lte?: Int | null
-  returnLow_gt?: Int | null
-  returnLow_gte?: Int | null
-  currentUsage?: Int | null
-  currentUsage_not?: Int | null
-  currentUsage_in?: Int[] | Int | null
-  currentUsage_not_in?: Int[] | Int | null
-  currentUsage_lt?: Int | null
-  currentUsage_lte?: Int | null
-  currentUsage_gt?: Int | null
-  currentUsage_gte?: Int | null
+  gasUsage?: Float | null
+  gasUsage_not?: Float | null
+  gasUsage_in?: Float[] | Float | null
+  gasUsage_not_in?: Float[] | Float | null
+  gasUsage_lt?: Float | null
+  gasUsage_lte?: Float | null
+  gasUsage_gt?: Float | null
+  gasUsage_gte?: Float | null
+  usageHigh?: Float | null
+  usageHigh_not?: Float | null
+  usageHigh_in?: Float[] | Float | null
+  usageHigh_not_in?: Float[] | Float | null
+  usageHigh_lt?: Float | null
+  usageHigh_lte?: Float | null
+  usageHigh_gt?: Float | null
+  usageHigh_gte?: Float | null
+  usageLow?: Float | null
+  usageLow_not?: Float | null
+  usageLow_in?: Float[] | Float | null
+  usageLow_not_in?: Float[] | Float | null
+  usageLow_lt?: Float | null
+  usageLow_lte?: Float | null
+  usageLow_gt?: Float | null
+  usageLow_gte?: Float | null
+  returnHigh?: Float | null
+  returnHigh_not?: Float | null
+  returnHigh_in?: Float[] | Float | null
+  returnHigh_not_in?: Float[] | Float | null
+  returnHigh_lt?: Float | null
+  returnHigh_lte?: Float | null
+  returnHigh_gt?: Float | null
+  returnHigh_gte?: Float | null
+  returnLow?: Float | null
+  returnLow_not?: Float | null
+  returnLow_in?: Float[] | Float | null
+  returnLow_not_in?: Float[] | Float | null
+  returnLow_lt?: Float | null
+  returnLow_lte?: Float | null
+  returnLow_gt?: Float | null
+  returnLow_gte?: Float | null
+  currentUsage?: Float | null
+  currentUsage_not?: Float | null
+  currentUsage_in?: Float[] | Float | null
+  currentUsage_not_in?: Float[] | Float | null
+  currentUsage_lt?: Float | null
+  currentUsage_lte?: Float | null
+  currentUsage_gt?: Float | null
+  currentUsage_gte?: Float | null
   dateRecorded?: DateTime | null
   dateRecorded_not?: DateTime | null
   dateRecorded_in?: DateTime[] | DateTime | null
@@ -645,12 +645,12 @@ export interface BatchPayload {
 
 export interface Measurement extends Node {
   id: ID_Output
-  gasUsage: Int
-  usageHigh: Int
-  usageLow: Int
-  returnHigh: Int
-  returnLow: Int
-  currentUsage: Int
+  gasUsage: Float
+  usageHigh: Float
+  usageLow: Float
+  returnHigh: Float
+  returnLow: Float
+  currentUsage: Float
   dateRecorded: DateTime
   dateAddedToDatabase: DateTime
 }
@@ -676,12 +676,12 @@ export interface MeasurementEdge {
 
 export interface MeasurementPreviousValues {
   id: ID_Output
-  gasUsage: Int
-  usageHigh: Int
-  usageLow: Int
-  returnHigh: Int
-  returnLow: Int
-  currentUsage: Int
+  gasUsage: Float
+  usageHigh: Float
+  usageLow: Float
+  returnHigh: Float
+  returnLow: Float
+  currentUsage: Float
   dateRecorded: DateTime
   dateAddedToDatabase: DateTime
 }
@@ -710,6 +710,11 @@ The `Boolean` scalar type represents `true` or `false`.
 export type Boolean = boolean
 
 export type DateTime = Date | string
+
+/*
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](https://en.wikipedia.org/wiki/IEEE_floating_point).
+*/
+export type Float = number
 
 /*
 The `ID` scalar type represents a unique identifier, often used to refetch an object or as key for a cache. The ID type appears in a JSON response as a String; however, it is not intended to be human-readable. When expected as an input type, any string (such as `"4"`) or integer (such as `4`) input value will be accepted as an ID.

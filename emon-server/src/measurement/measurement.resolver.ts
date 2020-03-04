@@ -61,10 +61,10 @@ export class MeasurementResolver {
         return this.prisma.mutation.deleteManyMeasurements(args, info);
     }
 
-    // @UseGuards(GqlAuthGuard, PermissionsGuard)
+    @UseGuards(GqlAuthGuard, PermissionsGuard)
     @Subscription('measurement')
-    // @Permissions('emon-server:poweruser')
-    async onMeasurementMutation(@Args() args, @Info() info) {
+    @Permissions('emon-server:poweruser')
+    async onMeasurementMutation(@Args() args, @Info() info) {        
         return this.prisma.subscription.measurement(args, info);
     }
 
