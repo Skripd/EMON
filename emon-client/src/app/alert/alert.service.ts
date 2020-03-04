@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import { Alert } from '../models/alert.model';
+import { Alert } from '../_models/alert.model';
 import { GlobalAppService } from '../global-app.service';
 
 @Injectable({

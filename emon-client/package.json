@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "graphql": "gql-gen --config codegen.yml"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +41,7 @@
     "ng2-charts": "^2.3.0",
     "ngx-json-viewer": "^2.4.0",
     "rxjs": "~6.5.4",
+    "subscriptions-transport-ws": "^0.9.16",
     "tslib": "^1.10.0",
     "uuid": "^7.0.1",
     "zone.js": "~0.9.1"

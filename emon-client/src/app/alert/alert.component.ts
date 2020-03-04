@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertService } from './alert.service';
 import { Subscription, Observable } from 'rxjs';
-import { Alert } from '../models/alert.model';
+import { Alert } from '../_models/alert.model';
 
 @Component({
   selector: 'app-alert',

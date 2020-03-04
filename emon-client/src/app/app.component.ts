@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GlobalAppService } from './global-app.service';
-import { AppState } from './models/appState.model';
+import { AppState } from './_models/appState.model';
 import { Subscription } from 'rxjs';
 import { AlertService } from './alert/alert.service';
 import { KeycloakService } from 'keycloak-angular';

@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { GasusageChartComponent } from './gasusage-chart/gasusage-chart.component';
+import { PowerusageChartComponent } from './powerusage-chart/powerusage-chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { PowerusageCardComponent } from './powerusage-card/powerusage-card.component';
+import { ClarityModule } from '@clr/angular';
 
 @NgModule({
-  declarations: [GasusageChartComponent],
+  declarations: [PowerusageChartComponent, PowerusageCardComponent],
   imports: [
     CommonModule,
-    ChartsModule
+    ChartsModule,
+    ClarityModule
   ],
-  exports: [GasusageChartComponent]
+  exports: [PowerusageCardComponent]
 })
 export class AppChartsModule { }

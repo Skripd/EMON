@@ -6,14 +6,15 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { setContext } from 'apollo-link-context';
 import { onError } from 'apollo-link-error';
-import { ApolloLink } from 'apollo-link';
+import { WebSocketLink } from 'apollo-link-ws';
 
 import { KeycloakService } from 'keycloak-angular';
-import { StatusCodeError } from '../models/graphqlError.model';
+import { StatusCodeError } from '../_models/graphqlError.model';
 import { AlertService } from '../alert/alert.service';
+import { getMainDefinition } from 'apollo-utilities';
+import { split } from 'apollo-link';
 
 const uri = 'http://localhost:3000/graphql';
-
 
 @NgModule({
   exports: [
@@ -24,16 +25,20 @@ const uri = 'http://localhost:3000/graphql';
 })
 export class GraphQLModule {
 
-  uri = 'http://localhost:3000/graphql';
-
   constructor(
     private kcService: KeycloakService,
     private apollo: Apollo,
     private http: HttpLink,
     private alert: AlertService
   ) {
+    setTimeout(() => {
+      this.setup();
+    }, 500);
+  }
 
-    const basic = http.create({
+  private setup() {
+
+    const basic = this.http.create({
       uri
     });
 
@@ -50,14 +55,16 @@ export class GraphQLModule {
     // Error handling for GraphQL client
     const error = onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
-        graphQLErrors.map(({ message, locations, path }) => {
-
+        graphQLErrors.map(({ message, locations, path }) => {          
           const ua = JSON.parse(JSON.stringify(message)) as StatusCodeError;
           if (ua.statusCode) {
             switch (ua.statusCode) {
-              case 401: alert.addAlert('You do not have authorization to access this', 'danger');
-                        break;
+              case 401: this.alert.addAlert('You are not authenticated reload this page', 'danger');
+              break;
+              case 403: this.alert.addAlert('You do not have permission to access this', 'danger');
+              break;
               default: console.log('[GraphQL Error Handler] [StatusCode Unhandled Error] message:', ua);
+              break;
             }
           }
         });
@@ -66,12 +73,48 @@ export class GraphQLModule {
       if (networkError) { console.log(`[Network error]: ${networkError}`); }
     });
 
-    const link = ApolloLink.from([auth, error, basic]);
+    // Create a WebSocket link
+    const ws = new WebSocketLink({
+      uri: `ws://localhost:3000/graphql`,
+      options: {
+        reconnect: true,
+        connectionParams: async () => {
+          const token = await this.kcService.getToken();
+          
+          return {
+            isWebSocket: true,
+            headers: {
+              authorization: `Bearer ${token}`,
+            }
+          }
+        },
+        // connectionCallback: (error, result) => {
+        //   if(error) {
+        //     console.log('[ERROR] [WSLINK]::', error);
+        //   } else if(result) {
+        //     console.log('[WSLINK]::', result);
+        //   }
+        // },
+        // lazy: true
+      },
+    });
+    
+    const link = error.concat(auth).concat(basic);
+    const wsLink = error.concat(ws);
+    const linkWithWebsocket = split(
+      // split based on operation type
+      ({ query }) => {
+        let definition = getMainDefinition(query);
+        return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
+      },
+      wsLink,
+      link,
+    );
     const cache = new InMemoryCache();
 
-    apollo.create({
-      link,
-      cache,
+    this.apollo.create({
+      link: linkWithWebsocket,
+      cache
     });
   }
 }

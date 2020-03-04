@@ -1,0 +1,12 @@
+<div class="card">
+    <div class="card-header">
+        Power Usage Live
+    </div>
+    <div class="card-block">
+        <span *ngIf="loading" class="spinner">Loading...</span>
+        <app-powerusage-chart [hidden]="loading" (loading)="onLoadingEvent($event)"></app-powerusage-chart>
+    </div>
+    <div class="card-footer">
+        <button class="btn btn-sm btn-link">Action</button>
+    </div>
+</div>

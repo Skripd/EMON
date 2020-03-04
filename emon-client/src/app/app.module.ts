@@ -8,16 +8,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 import { KeycloakAngularModule, KeycloakService, KeycloakConfig } from 'keycloak-angular';
-import { AboutUserPageComponent } from './about-user-page/about-user-page.component';
 import { CallbackComponent } from './auth/callback/callback.component';
 import { LogoutComponent } from './auth/logout/logout.component';
 import { GraphQLModule } from './graphql/graphql.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppChartsModule } from './charts/appCharts.module';
 
-import { HomepageComponent } from './homepage/homepage.component';
 import { AlertComponent } from './alert/alert.component';
-import { GasUsageCardComponent } from './cards/gas-usage-card/gas-usage-card.component';
+import { AboutUserPageComponent } from './about-user-page/about-user-page.component';
+import { HomepageComponent } from './homepage/homepage.component';
 
 const keycloakService: KeycloakService = new KeycloakService();
 
@@ -29,7 +28,6 @@ const keycloakService: KeycloakService = new KeycloakService();
     AboutUserPageComponent,
     CallbackComponent,
     LogoutComponent,
-    GasUsageCardComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +60,7 @@ export class AppModule implements DoBootstrap {
     const loadingScreen = new Promise(resolve => {
       setTimeout(() => {
         resolve();
-      }, 1);
+      }, 3000);
     });
 
     const kc = keycloakService
@@ -76,19 +74,29 @@ export class AppModule implements DoBootstrap {
       .then((loggedin) => {
         if (loggedin) {
           console.log('[ngDoBootstrap] Logged in cache detected');
+          Promise.all([
+            loadingScreen
+          ]).then(() => {
+            console.info('[ngDoBootstrap] [KEYCLOAK] Bootstrapping app now');
+            appRef.bootstrap(AppComponent);
+          })
         } else {
           keycloakService.login({
-            redirectUri: window.location.origin + '/'
+            redirectUri: window.location.origin + '/home'
           });
         }
       })
       .catch(error => console.error('[ngDoBootstrap] init Keycloak failed', error));
 
-    Promise.all([
-      kc,
-      // loadingScreen
-    ], ).then(() => {
-      appRef.bootstrap(AppComponent);
-    });
+    // Promise.all([
+    //   kc,
+    //   loadingScreen
+    // ], ).then(() => {
+    //   if(kc){
+    //   } else {
+    //     console.log('[ngDoBootstrap] [KEYCLOAK] Keycloak init false');
+        
+    //   }
+    // });
   }
 }
