@@ -69,9 +69,8 @@ parser.add_argument("-k", "--key", action="store", dest="privateKeyPath", help="
 parser.add_argument("-p", "--port", action="store", dest="port", type=int, help="Port number override MQTT")
 parser.add_argument("-w", "--websocket", action="store_true", dest="useWebsocket", default=False, help="Use MQTT over WebSocket")
 parser.add_argument("-id", "--clientId", action="store", dest="clientId", default="basicPubSub", help="Targeted client id")
-parser.add_argument("-t", "--topic", action="store", dest="topic", default="sdk/test/Python", help="Targeted topic")
+parser.add_argument("-t", "--topic", action="store", dest="topic", default="home/meting", help="Targeted topic")
 parser.add_argument("-m", "--mode", action="store", dest="mode", default="both", help="Operation modes: %s"%str(AllowedActions))
-parser.add_argument("-M", "--message", action="store", dest="message", default="Hello World!", help="Message to publish")
 
 parser.add_argument("-sbr", "--serialbaudrate", action="store", dest="serialbaudrate", type=int, default="9600", help="Baudrate of serial interface")
 parser.add_argument("-sto", "--serialtimeout", action="store", dest="serialtimeout", type=int, default="20", help="Serial port timeout")
@@ -179,24 +178,25 @@ while True:
 
     while stack_teller < 20:
        if stack[stack_teller][0:9] == "1-0:1.8.1":
-            message["dd"] = int(float(stack[stack_teller][10:15]))
+            message["dd"] = float(stack[stack_teller][10:19])
        elif stack[stack_teller][0:9] == "1-0:1.8.2":
-            message["pd"] = int(float(stack[stack_teller][10:15]))
+            message["pd"] = float(stack[stack_teller][10:19])
        elif stack[stack_teller][0:9] == "1-0:2.8.1":
-            message["dt"] = int(float(stack[stack_teller][10:15]))
+            message["dt"] = float(stack[stack_teller][10:19])
        elif stack[stack_teller][0:9] == "1-0:2.8.2":
-            message["pt"] = int(float(stack[stack_teller][10:15]))
+            message["pt"] = float(stack[stack_teller][10:19])
        elif stack[stack_teller][0:9] == "1-0:1.7.0":
-            message["av"] = int(float(stack[stack_teller][10:17])*1000) 
+            message["av"] = float(stack[stack_teller][10:17]) 
        elif stack[stack_teller][0:9] == "1-0:2.7.0":
-            message["tv"] = int(float(stack[stack_teller][10:17])*1000)
+            message["tv"] = float(stack[stack_teller][10:17])
        elif stack[stack_teller][0:10] == "0-1:24.3.0":
-            message["g"] = int(float(stack[stack_teller+1][1:10])*1000)
+            message["g"] = float(stack[stack_teller+1][1:10])
        else:
             pass
        stack_teller = stack_teller +1
 
     stack_teller=0
+    stack = []
 
     if args.mode == 'both' or args.mode == 'publish':
         # message['message'] = args.message
