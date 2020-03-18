@@ -16,6 +16,8 @@
                 <clr-icon shape="caret down"></clr-icon>
             </button>
             <clr-dropdown-menu *clrIfOpen clrPosition="bottom-right">
+                <a clrDropdownItem (click)="setLightTheme()">Light</a>
+                <a clrDropdownItem (click)="setDarkTheme()">Dark</a>
                 <a [routerLink]="[ '/aboutuser' ]" clrDropdownItem>About user</a>
                 <a [routerLink]="[ '/auth/logout']" clrDropdownItem>Log out</a>
             </clr-dropdown-menu>

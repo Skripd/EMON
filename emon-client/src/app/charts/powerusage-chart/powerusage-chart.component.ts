@@ -2,8 +2,8 @@ import { Component, OnInit, ViewEncapsulation, ViewChild, OnDestroy, Output, Eve
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label, BaseChartDirective } from 'ng2-charts';
 
-import { PowerUsageGQL } from './powerUsage.aa-service';
-import { PowerUsageLiveService } from './powerusageLive.service';
+import { PowerUsageGQL } from '../services/powerUsage.aa-service';
+import { PowerUsageLiveService } from '../services/powerusageLive.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -66,7 +66,6 @@ export class PowerusageChartComponent implements OnInit, OnDestroy {
   public liveSubscription: Subscription;
   public dataSubscription: Subscription;
 
-  @ViewChild(BaseChartDirective, { static: true }) chart: BaseChartDirective;
   @Output() loading = new EventEmitter<boolean>();
 
   constructor(
@@ -120,7 +119,7 @@ export class PowerusageChartComponent implements OnInit, OnDestroy {
         self.liveSubscription = self.powerusageLiveService.subscribe().subscribe({
           next(data) {
             self.loading.emit(false);
-            console.log('[GQL SUB DATA]::\n', data);
+            // console.log('[GQL SUB DATA]::\n', data);
             self.lineChartData[0].data.shift();
             self.lineChartLabels.shift();
 
@@ -132,12 +131,11 @@ export class PowerusageChartComponent implements OnInit, OnDestroy {
             console.log('[ERROR] [LIVE]::', errors);
           },
           complete() {
-            console.log('complete')
+            console.log('[POWER USAGE CHART] [COMPLETE]')
           }
         });
       }
     })
-
   }
 
   setData(options: any[]) {

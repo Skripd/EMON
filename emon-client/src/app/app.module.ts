@@ -68,6 +68,8 @@ export class AppModule implements DoBootstrap {
         config: keycloakConfig,
         initOptions: {
           onLoad: 'check-sso',
+          promiseType: 'legacy',
+          enableLogging: true,
           silentCheckSsoRedirectUri: window.location.origin + '/assets/silent-check-sso.html'
         }
       })
@@ -86,7 +88,9 @@ export class AppModule implements DoBootstrap {
           });
         }
       })
-      .catch(error => console.error('[ngDoBootstrap] init Keycloak failed', error));
+      .catch((reason) => {
+        console.error('[ngDoBootstrap] init Keycloak failed.\n', reason);
+      });//error => console.error('[ngDoBootstrap] init Keycloak failed', error));
 
     // Promise.all([
     //   kc,
@@ -99,4 +103,5 @@ export class AppModule implements DoBootstrap {
     //   }
     // });
   }
+
 }

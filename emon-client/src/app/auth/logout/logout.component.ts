@@ -17,9 +17,10 @@ export class LogoutComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.apollo.getClient().resetStore();
-    this.keycloakService.logout();
-    this.router.navigate(['/']);
+    this.apollo.getClient().resetStore().then(() => {
+      this.keycloakService.logout(window.location.origin + '/');
+    });
+    // this.router.navigate(['/']);
   }
 
 }

@@ -4,6 +4,7 @@ import { AppState } from './_models/appState.model';
 import { Subscription } from 'rxjs';
 import { AlertService } from './alert/alert.service';
 import { KeycloakService } from 'keycloak-angular';
+import { ThemeService } from './theme.service';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +26,8 @@ export class AppComponent implements OnInit {
   constructor(
     private readonly stateService: GlobalAppService,
     private readonly alertService: AlertService,
-    private readonly keycloakService: KeycloakService
+    private readonly keycloakService: KeycloakService,
+    private readonly themeService: ThemeService
   ) {
     this.appState$ = stateService.state.subscribe(rs => {
       this.appState = rs;
@@ -34,5 +36,13 @@ export class AppComponent implements OnInit {
 
   async ngOnInit(): Promise<any> {
     this.email = (await this.keycloakService.loadUserProfile()).email;
+  }
+
+  setLightTheme(): void {
+    this.themeService.setTheme(0);
+  }
+
+  setDarkTheme(): void {
+    this.themeService.setTheme(1);
   }
 }

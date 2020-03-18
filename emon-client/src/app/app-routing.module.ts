@@ -7,13 +7,13 @@ import { LogoutComponent } from './auth/logout/logout.component';
 
 
 const routes: Routes = [
-  { path: '', component: HomepageComponent },
+  { path: 'home', loadChildren: () => import('./graphql/graphql.module').then(m => m.GraphQLModule), component: HomepageComponent },
   { path: 'aboutuser', component: AboutUserPageComponent },
   { path: 'auth', children: [
     { path: 'callback', component: CallbackComponent },
     { path: 'logout', component: LogoutComponent }
   ]},
-  { path: '**', redirectTo: '/' }
+  { path: '**', redirectTo: '/home' }
 ];
 
 @NgModule({

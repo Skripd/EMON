@@ -31,9 +31,22 @@ export class GraphQLModule {
     private http: HttpLink,
     private alert: AlertService
   ) {
-    setTimeout(() => {
-      this.setup();
-    }, 500);
+    this.checklogin();
+  }
+
+  private async checklogin() {
+    await Promise.resolve(this.kcService.isLoggedIn()).then((loggedin) => {
+      if(loggedin) {
+        console.log('[GRAPHQL MODULE] [INIT] Logged in initializing up module.');          
+        this.setup();
+      } else {
+        console.log('[GRAPHQL MODULE] [INIT] Not logged in sleeping for 100ms');
+        setTimeout(() => {
+          this.checklogin();
+          return;
+        }, 100);
+      }
+    });
   }
 
   private setup() {

@@ -25,7 +25,12 @@
             "aot": true,
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "clr-ui*.min.css",
+                "input": "node_modules/@clr/ui/",
+                "output": "./styles/"
+              }
             ],
             "styles": [
               "node_modules/@clr/icons/clr-icons.min.css",
