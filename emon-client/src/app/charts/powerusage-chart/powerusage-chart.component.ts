@@ -1,10 +1,8 @@
 import { Component, OnInit, ViewEncapsulation, ViewChild, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { ChartDataSets, ChartOptions, ChartType } from 'chart.js';
 import { Color, Label, BaseChartDirective } from 'ng2-charts';
-
-import { PowerUsageGQL } from '../services/powerUsage.aa-service';
-import { PowerUsageLiveService } from '../services/powerusageLive.service';
 import { Subscription } from 'rxjs';
+import { LiveMeasurementsGQL, GetPowerUsagePageGQL } from '../../generated/graphql';
 
 @Component({
   selector: 'app-powerusage-chart',
@@ -69,8 +67,8 @@ export class PowerusageChartComponent implements OnInit, OnDestroy {
   @Output() loading = new EventEmitter<boolean>();
 
   constructor(
-    private powerusageService: PowerUsageGQL,
-    private powerusageLiveService: PowerUsageLiveService,
+    private powerusageService: GetPowerUsagePageGQL,
+    private powerusageLiveService: LiveMeasurementsGQL,
   ) { }
 
   ngOnInit() {
@@ -93,7 +91,7 @@ export class PowerusageChartComponent implements OnInit, OnDestroy {
   }
 
   async setLive() {
-    var self = this;
+    const self = this;
     this.loading.emit(true);
 
     if (this.dataSubscription) {
@@ -110,10 +108,16 @@ export class PowerusageChartComponent implements OnInit, OnDestroy {
     }).subscribe({
       next(data) {
         self.lineChartData[0].data = data.data.measurements.map(value => value.currentUsage);
-        self.lineChartLabels = data.data.measurements.map(v => v.dateRecorded);//new Date(v.dateRecorded).toLocaleTimeString('NL-nl'));
+        self.lineChartLabels = data.data.measurements.map(v => v.dateRecorded); // new Date(v.dateRecorded).toLocaleTimeString('NL-nl'));
       },
       error(errors) {
-
+        if (JSON.stringify(errors).includes('401')) {
+          self.loading.emit(false);
+        } else {
+          setTimeout(() => {
+            self.setLive();
+          }, 500);
+        }
       },
       complete() {
         self.liveSubscription = self.powerusageLiveService.subscribe().subscribe({
@@ -124,18 +128,25 @@ export class PowerusageChartComponent implements OnInit, OnDestroy {
             self.lineChartLabels.shift();
 
             self.lineChartData[0].data.push(data.data.measurement.node.currentUsage);
-            self.lineChartLabels.push(data.data.measurement.node.dateRecorded);//.toLocaleTimeString('NL-nl'));
+            self.lineChartLabels.push(data.data.measurement.node.dateRecorded); // .toLocaleTimeString('NL-nl'));
 
           },
           error(errors) {
             console.log('[ERROR] [LIVE]::', errors);
+            if (JSON.stringify(errors).includes('401')) {
+              self.loading.emit(false);
+            } else {
+              setTimeout(() => {
+                self.setLive();
+              }, 500);
+            }
           },
           complete() {
-            console.log('[POWER USAGE CHART] [COMPLETE]')
+            console.log('[POWER USAGE CHART] [COMPLETE]');
           }
         });
       }
-    })
+    });
   }
 
   setData(options: any[]) {
@@ -147,11 +158,11 @@ export class PowerusageChartComponent implements OnInit, OnDestroy {
     this.dataSubscription = this.powerusageService.fetch({
       last: options[0]
     }).subscribe(rs => {
-      //console.log(rs);
+      // console.log(rs);
       this.lineChartData[0].data = rs.data.measurements.map(value => value.currentUsage);
       this.lineChartLabels = rs.data.measurements.map(v => new Date(v.dateRecorded).toLocaleTimeString('NL-nl'));
       this.loading.emit(false);
-    })
+    });
   }
 
 }

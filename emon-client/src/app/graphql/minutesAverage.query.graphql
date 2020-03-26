@@ -1,0 +1,16 @@
+query getMinutesPage($dateRecorded_gte: DateTime!, $dateRecorded_lte: DateTime! ){
+  averageMinutes(where: {
+    AND: [
+      { dateRecorded_gte: $dateRecorded_gte },
+      { dateRecorded_lte: $dateRecorded_lte }
+    ]
+  }) {
+    id
+    avCurrentUsage
+    avGasUsage
+    usageHigh
+    usageLow
+    dateRecorded
+    processingTime
+  }
+}

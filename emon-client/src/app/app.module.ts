@@ -60,7 +60,7 @@ export class AppModule implements DoBootstrap {
     const loadingScreen = new Promise(resolve => {
       setTimeout(() => {
         resolve();
-      }, 3000);
+      }, 6000);
     });
 
     const kc = keycloakService
@@ -81,16 +81,16 @@ export class AppModule implements DoBootstrap {
           ]).then(() => {
             console.info('[ngDoBootstrap] [KEYCLOAK] Bootstrapping app now');
             appRef.bootstrap(AppComponent);
-          })
+          });
         } else {
           keycloakService.login({
-            redirectUri: window.location.origin + '/home'
+            redirectUri: window.location.origin + '/'
           });
         }
       })
       .catch((reason) => {
         console.error('[ngDoBootstrap] init Keycloak failed.\n', reason);
-      });//error => console.error('[ngDoBootstrap] init Keycloak failed', error));
+      }); // error => console.error('[ngDoBootstrap] init Keycloak failed', error));
 
     // Promise.all([
     //   kc,
@@ -99,7 +99,7 @@ export class AppModule implements DoBootstrap {
     //   if(kc){
     //   } else {
     //     console.log('[ngDoBootstrap] [KEYCLOAK] Keycloak init false');
-        
+
     //   }
     // });
   }

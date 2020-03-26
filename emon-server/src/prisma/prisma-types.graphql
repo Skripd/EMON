@@ -1,8 +1,1163 @@
 # source: http://localhost:4466/
-# timestamp: Mon Mar 02 2020 18:23:09 GMT+0100 (Central European Standard Time)
+# timestamp: Thu Mar 26 2020 07:39:14 GMT+0100 (Central European Standard Time)
+
+type AggregateAverageDay {
+  count: Int!
+}
+
+type AggregateAverageHour {
+  count: Int!
+}
+
+type AggregateAverageMinute {
+  count: Int!
+}
 
 type AggregateMeasurement {
   count: Int!
+}
+
+type AverageDay implements Node {
+  id: ID!
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime!
+  dateAddedToDatabase: DateTime!
+}
+
+"""A connection to a list of items."""
+type AverageDayConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AverageDayEdge]!
+  aggregate: AggregateAverageDay!
+}
+
+input AverageDayCreateInput {
+  id: ID
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime!
+}
+
+"""An edge in a connection."""
+type AverageDayEdge {
+  """The item at the end of the edge."""
+  node: AverageDay!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum AverageDayOrderByInput {
+  id_ASC
+  id_DESC
+  avGasUsage_ASC
+  avGasUsage_DESC
+  usageHigh_ASC
+  usageHigh_DESC
+  usageLow_ASC
+  usageLow_DESC
+  returnHigh_ASC
+  returnHigh_DESC
+  returnLow_ASC
+  returnLow_DESC
+  avCurrentUsage_ASC
+  avCurrentUsage_DESC
+  processingTime_ASC
+  processingTime_DESC
+  dateRecorded_ASC
+  dateRecorded_DESC
+  dateAddedToDatabase_ASC
+  dateAddedToDatabase_DESC
+}
+
+type AverageDayPreviousValues {
+  id: ID!
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime!
+  dateAddedToDatabase: DateTime!
+}
+
+type AverageDaySubscriptionPayload {
+  mutation: MutationType!
+  node: AverageDay
+  updatedFields: [String!]
+  previousValues: AverageDayPreviousValues
+}
+
+input AverageDaySubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AverageDaySubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: AverageDayWhereInput
+}
+
+input AverageDayUpdateInput {
+  avGasUsage: Float
+  usageHigh: Float
+  usageLow: Float
+  returnHigh: Float
+  returnLow: Float
+  avCurrentUsage: Float
+  processingTime: Float
+  dateRecorded: DateTime
+}
+
+input AverageDayUpdateManyMutationInput {
+  avGasUsage: Float
+  usageHigh: Float
+  usageLow: Float
+  returnHigh: Float
+  returnLow: Float
+  avCurrentUsage: Float
+  processingTime: Float
+  dateRecorded: DateTime
+}
+
+input AverageDayWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AverageDayWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  avGasUsage: Float
+
+  """All values that are not equal to given value."""
+  avGasUsage_not: Float
+
+  """All values that are contained in given list."""
+  avGasUsage_in: [Float!]
+
+  """All values that are not contained in given list."""
+  avGasUsage_not_in: [Float!]
+
+  """All values less than the given value."""
+  avGasUsage_lt: Float
+
+  """All values less than or equal the given value."""
+  avGasUsage_lte: Float
+
+  """All values greater than the given value."""
+  avGasUsage_gt: Float
+
+  """All values greater than or equal the given value."""
+  avGasUsage_gte: Float
+  usageHigh: Float
+
+  """All values that are not equal to given value."""
+  usageHigh_not: Float
+
+  """All values that are contained in given list."""
+  usageHigh_in: [Float!]
+
+  """All values that are not contained in given list."""
+  usageHigh_not_in: [Float!]
+
+  """All values less than the given value."""
+  usageHigh_lt: Float
+
+  """All values less than or equal the given value."""
+  usageHigh_lte: Float
+
+  """All values greater than the given value."""
+  usageHigh_gt: Float
+
+  """All values greater than or equal the given value."""
+  usageHigh_gte: Float
+  usageLow: Float
+
+  """All values that are not equal to given value."""
+  usageLow_not: Float
+
+  """All values that are contained in given list."""
+  usageLow_in: [Float!]
+
+  """All values that are not contained in given list."""
+  usageLow_not_in: [Float!]
+
+  """All values less than the given value."""
+  usageLow_lt: Float
+
+  """All values less than or equal the given value."""
+  usageLow_lte: Float
+
+  """All values greater than the given value."""
+  usageLow_gt: Float
+
+  """All values greater than or equal the given value."""
+  usageLow_gte: Float
+  returnHigh: Float
+
+  """All values that are not equal to given value."""
+  returnHigh_not: Float
+
+  """All values that are contained in given list."""
+  returnHigh_in: [Float!]
+
+  """All values that are not contained in given list."""
+  returnHigh_not_in: [Float!]
+
+  """All values less than the given value."""
+  returnHigh_lt: Float
+
+  """All values less than or equal the given value."""
+  returnHigh_lte: Float
+
+  """All values greater than the given value."""
+  returnHigh_gt: Float
+
+  """All values greater than or equal the given value."""
+  returnHigh_gte: Float
+  returnLow: Float
+
+  """All values that are not equal to given value."""
+  returnLow_not: Float
+
+  """All values that are contained in given list."""
+  returnLow_in: [Float!]
+
+  """All values that are not contained in given list."""
+  returnLow_not_in: [Float!]
+
+  """All values less than the given value."""
+  returnLow_lt: Float
+
+  """All values less than or equal the given value."""
+  returnLow_lte: Float
+
+  """All values greater than the given value."""
+  returnLow_gt: Float
+
+  """All values greater than or equal the given value."""
+  returnLow_gte: Float
+  avCurrentUsage: Float
+
+  """All values that are not equal to given value."""
+  avCurrentUsage_not: Float
+
+  """All values that are contained in given list."""
+  avCurrentUsage_in: [Float!]
+
+  """All values that are not contained in given list."""
+  avCurrentUsage_not_in: [Float!]
+
+  """All values less than the given value."""
+  avCurrentUsage_lt: Float
+
+  """All values less than or equal the given value."""
+  avCurrentUsage_lte: Float
+
+  """All values greater than the given value."""
+  avCurrentUsage_gt: Float
+
+  """All values greater than or equal the given value."""
+  avCurrentUsage_gte: Float
+  processingTime: Float
+
+  """All values that are not equal to given value."""
+  processingTime_not: Float
+
+  """All values that are contained in given list."""
+  processingTime_in: [Float!]
+
+  """All values that are not contained in given list."""
+  processingTime_not_in: [Float!]
+
+  """All values less than the given value."""
+  processingTime_lt: Float
+
+  """All values less than or equal the given value."""
+  processingTime_lte: Float
+
+  """All values greater than the given value."""
+  processingTime_gt: Float
+
+  """All values greater than or equal the given value."""
+  processingTime_gte: Float
+  dateRecorded: DateTime
+
+  """All values that are not equal to given value."""
+  dateRecorded_not: DateTime
+
+  """All values that are contained in given list."""
+  dateRecorded_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  dateRecorded_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  dateRecorded_lt: DateTime
+
+  """All values less than or equal the given value."""
+  dateRecorded_lte: DateTime
+
+  """All values greater than the given value."""
+  dateRecorded_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  dateRecorded_gte: DateTime
+  dateAddedToDatabase: DateTime
+
+  """All values that are not equal to given value."""
+  dateAddedToDatabase_not: DateTime
+
+  """All values that are contained in given list."""
+  dateAddedToDatabase_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  dateAddedToDatabase_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  dateAddedToDatabase_lt: DateTime
+
+  """All values less than or equal the given value."""
+  dateAddedToDatabase_lte: DateTime
+
+  """All values greater than the given value."""
+  dateAddedToDatabase_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  dateAddedToDatabase_gte: DateTime
+}
+
+input AverageDayWhereUniqueInput {
+  id: ID
+  dateRecorded: DateTime
+}
+
+type AverageHour implements Node {
+  id: ID!
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime!
+  dateAddedToDatabase: DateTime!
+}
+
+"""A connection to a list of items."""
+type AverageHourConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AverageHourEdge]!
+  aggregate: AggregateAverageHour!
+}
+
+input AverageHourCreateInput {
+  id: ID
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime!
+}
+
+"""An edge in a connection."""
+type AverageHourEdge {
+  """The item at the end of the edge."""
+  node: AverageHour!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum AverageHourOrderByInput {
+  id_ASC
+  id_DESC
+  avGasUsage_ASC
+  avGasUsage_DESC
+  usageHigh_ASC
+  usageHigh_DESC
+  usageLow_ASC
+  usageLow_DESC
+  returnHigh_ASC
+  returnHigh_DESC
+  returnLow_ASC
+  returnLow_DESC
+  avCurrentUsage_ASC
+  avCurrentUsage_DESC
+  processingTime_ASC
+  processingTime_DESC
+  dateRecorded_ASC
+  dateRecorded_DESC
+  dateAddedToDatabase_ASC
+  dateAddedToDatabase_DESC
+}
+
+type AverageHourPreviousValues {
+  id: ID!
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime!
+  dateAddedToDatabase: DateTime!
+}
+
+type AverageHourSubscriptionPayload {
+  mutation: MutationType!
+  node: AverageHour
+  updatedFields: [String!]
+  previousValues: AverageHourPreviousValues
+}
+
+input AverageHourSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AverageHourSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: AverageHourWhereInput
+}
+
+input AverageHourUpdateInput {
+  avGasUsage: Float
+  usageHigh: Float
+  usageLow: Float
+  returnHigh: Float
+  returnLow: Float
+  avCurrentUsage: Float
+  processingTime: Float
+  dateRecorded: DateTime
+}
+
+input AverageHourUpdateManyMutationInput {
+  avGasUsage: Float
+  usageHigh: Float
+  usageLow: Float
+  returnHigh: Float
+  returnLow: Float
+  avCurrentUsage: Float
+  processingTime: Float
+  dateRecorded: DateTime
+}
+
+input AverageHourWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AverageHourWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  avGasUsage: Float
+
+  """All values that are not equal to given value."""
+  avGasUsage_not: Float
+
+  """All values that are contained in given list."""
+  avGasUsage_in: [Float!]
+
+  """All values that are not contained in given list."""
+  avGasUsage_not_in: [Float!]
+
+  """All values less than the given value."""
+  avGasUsage_lt: Float
+
+  """All values less than or equal the given value."""
+  avGasUsage_lte: Float
+
+  """All values greater than the given value."""
+  avGasUsage_gt: Float
+
+  """All values greater than or equal the given value."""
+  avGasUsage_gte: Float
+  usageHigh: Float
+
+  """All values that are not equal to given value."""
+  usageHigh_not: Float
+
+  """All values that are contained in given list."""
+  usageHigh_in: [Float!]
+
+  """All values that are not contained in given list."""
+  usageHigh_not_in: [Float!]
+
+  """All values less than the given value."""
+  usageHigh_lt: Float
+
+  """All values less than or equal the given value."""
+  usageHigh_lte: Float
+
+  """All values greater than the given value."""
+  usageHigh_gt: Float
+
+  """All values greater than or equal the given value."""
+  usageHigh_gte: Float
+  usageLow: Float
+
+  """All values that are not equal to given value."""
+  usageLow_not: Float
+
+  """All values that are contained in given list."""
+  usageLow_in: [Float!]
+
+  """All values that are not contained in given list."""
+  usageLow_not_in: [Float!]
+
+  """All values less than the given value."""
+  usageLow_lt: Float
+
+  """All values less than or equal the given value."""
+  usageLow_lte: Float
+
+  """All values greater than the given value."""
+  usageLow_gt: Float
+
+  """All values greater than or equal the given value."""
+  usageLow_gte: Float
+  returnHigh: Float
+
+  """All values that are not equal to given value."""
+  returnHigh_not: Float
+
+  """All values that are contained in given list."""
+  returnHigh_in: [Float!]
+
+  """All values that are not contained in given list."""
+  returnHigh_not_in: [Float!]
+
+  """All values less than the given value."""
+  returnHigh_lt: Float
+
+  """All values less than or equal the given value."""
+  returnHigh_lte: Float
+
+  """All values greater than the given value."""
+  returnHigh_gt: Float
+
+  """All values greater than or equal the given value."""
+  returnHigh_gte: Float
+  returnLow: Float
+
+  """All values that are not equal to given value."""
+  returnLow_not: Float
+
+  """All values that are contained in given list."""
+  returnLow_in: [Float!]
+
+  """All values that are not contained in given list."""
+  returnLow_not_in: [Float!]
+
+  """All values less than the given value."""
+  returnLow_lt: Float
+
+  """All values less than or equal the given value."""
+  returnLow_lte: Float
+
+  """All values greater than the given value."""
+  returnLow_gt: Float
+
+  """All values greater than or equal the given value."""
+  returnLow_gte: Float
+  avCurrentUsage: Float
+
+  """All values that are not equal to given value."""
+  avCurrentUsage_not: Float
+
+  """All values that are contained in given list."""
+  avCurrentUsage_in: [Float!]
+
+  """All values that are not contained in given list."""
+  avCurrentUsage_not_in: [Float!]
+
+  """All values less than the given value."""
+  avCurrentUsage_lt: Float
+
+  """All values less than or equal the given value."""
+  avCurrentUsage_lte: Float
+
+  """All values greater than the given value."""
+  avCurrentUsage_gt: Float
+
+  """All values greater than or equal the given value."""
+  avCurrentUsage_gte: Float
+  processingTime: Float
+
+  """All values that are not equal to given value."""
+  processingTime_not: Float
+
+  """All values that are contained in given list."""
+  processingTime_in: [Float!]
+
+  """All values that are not contained in given list."""
+  processingTime_not_in: [Float!]
+
+  """All values less than the given value."""
+  processingTime_lt: Float
+
+  """All values less than or equal the given value."""
+  processingTime_lte: Float
+
+  """All values greater than the given value."""
+  processingTime_gt: Float
+
+  """All values greater than or equal the given value."""
+  processingTime_gte: Float
+  dateRecorded: DateTime
+
+  """All values that are not equal to given value."""
+  dateRecorded_not: DateTime
+
+  """All values that are contained in given list."""
+  dateRecorded_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  dateRecorded_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  dateRecorded_lt: DateTime
+
+  """All values less than or equal the given value."""
+  dateRecorded_lte: DateTime
+
+  """All values greater than the given value."""
+  dateRecorded_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  dateRecorded_gte: DateTime
+  dateAddedToDatabase: DateTime
+
+  """All values that are not equal to given value."""
+  dateAddedToDatabase_not: DateTime
+
+  """All values that are contained in given list."""
+  dateAddedToDatabase_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  dateAddedToDatabase_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  dateAddedToDatabase_lt: DateTime
+
+  """All values less than or equal the given value."""
+  dateAddedToDatabase_lte: DateTime
+
+  """All values greater than the given value."""
+  dateAddedToDatabase_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  dateAddedToDatabase_gte: DateTime
+}
+
+input AverageHourWhereUniqueInput {
+  id: ID
+  dateRecorded: DateTime
+}
+
+type AverageMinute implements Node {
+  id: ID!
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime!
+  dateAddedToDatabase: DateTime!
+}
+
+"""A connection to a list of items."""
+type AverageMinuteConnection {
+  """Information to aid in pagination."""
+  pageInfo: PageInfo!
+
+  """A list of edges."""
+  edges: [AverageMinuteEdge]!
+  aggregate: AggregateAverageMinute!
+}
+
+input AverageMinuteCreateInput {
+  id: ID
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime!
+}
+
+"""An edge in a connection."""
+type AverageMinuteEdge {
+  """The item at the end of the edge."""
+  node: AverageMinute!
+
+  """A cursor for use in pagination."""
+  cursor: String!
+}
+
+enum AverageMinuteOrderByInput {
+  id_ASC
+  id_DESC
+  avGasUsage_ASC
+  avGasUsage_DESC
+  usageHigh_ASC
+  usageHigh_DESC
+  usageLow_ASC
+  usageLow_DESC
+  returnHigh_ASC
+  returnHigh_DESC
+  returnLow_ASC
+  returnLow_DESC
+  avCurrentUsage_ASC
+  avCurrentUsage_DESC
+  processingTime_ASC
+  processingTime_DESC
+  dateRecorded_ASC
+  dateRecorded_DESC
+  dateAddedToDatabase_ASC
+  dateAddedToDatabase_DESC
+}
+
+type AverageMinutePreviousValues {
+  id: ID!
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime!
+  dateAddedToDatabase: DateTime!
+}
+
+type AverageMinuteSubscriptionPayload {
+  mutation: MutationType!
+  node: AverageMinute
+  updatedFields: [String!]
+  previousValues: AverageMinutePreviousValues
+}
+
+input AverageMinuteSubscriptionWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AverageMinuteSubscriptionWhereInput!]
+
+  """The subscription event gets dispatched when it's listed in mutation_in"""
+  mutation_in: [MutationType!]
+
+  """
+  The subscription event gets only dispatched when one of the updated fields names is included in this list
+  """
+  updatedFields_contains: String
+
+  """
+  The subscription event gets only dispatched when all of the field names included in this list have been updated
+  """
+  updatedFields_contains_every: [String!]
+
+  """
+  The subscription event gets only dispatched when some of the field names included in this list have been updated
+  """
+  updatedFields_contains_some: [String!]
+  node: AverageMinuteWhereInput
+}
+
+input AverageMinuteUpdateInput {
+  avGasUsage: Float
+  usageHigh: Float
+  usageLow: Float
+  returnHigh: Float
+  returnLow: Float
+  avCurrentUsage: Float
+  processingTime: Float
+  dateRecorded: DateTime
+}
+
+input AverageMinuteUpdateManyMutationInput {
+  avGasUsage: Float
+  usageHigh: Float
+  usageLow: Float
+  returnHigh: Float
+  returnLow: Float
+  avCurrentUsage: Float
+  processingTime: Float
+  dateRecorded: DateTime
+}
+
+input AverageMinuteWhereInput {
+  """Logical AND on all given filters."""
+  AND: [AverageMinuteWhereInput!]
+  id: ID
+
+  """All values that are not equal to given value."""
+  id_not: ID
+
+  """All values that are contained in given list."""
+  id_in: [ID!]
+
+  """All values that are not contained in given list."""
+  id_not_in: [ID!]
+
+  """All values less than the given value."""
+  id_lt: ID
+
+  """All values less than or equal the given value."""
+  id_lte: ID
+
+  """All values greater than the given value."""
+  id_gt: ID
+
+  """All values greater than or equal the given value."""
+  id_gte: ID
+
+  """All values containing the given string."""
+  id_contains: ID
+
+  """All values not containing the given string."""
+  id_not_contains: ID
+
+  """All values starting with the given string."""
+  id_starts_with: ID
+
+  """All values not starting with the given string."""
+  id_not_starts_with: ID
+
+  """All values ending with the given string."""
+  id_ends_with: ID
+
+  """All values not ending with the given string."""
+  id_not_ends_with: ID
+  avGasUsage: Float
+
+  """All values that are not equal to given value."""
+  avGasUsage_not: Float
+
+  """All values that are contained in given list."""
+  avGasUsage_in: [Float!]
+
+  """All values that are not contained in given list."""
+  avGasUsage_not_in: [Float!]
+
+  """All values less than the given value."""
+  avGasUsage_lt: Float
+
+  """All values less than or equal the given value."""
+  avGasUsage_lte: Float
+
+  """All values greater than the given value."""
+  avGasUsage_gt: Float
+
+  """All values greater than or equal the given value."""
+  avGasUsage_gte: Float
+  usageHigh: Float
+
+  """All values that are not equal to given value."""
+  usageHigh_not: Float
+
+  """All values that are contained in given list."""
+  usageHigh_in: [Float!]
+
+  """All values that are not contained in given list."""
+  usageHigh_not_in: [Float!]
+
+  """All values less than the given value."""
+  usageHigh_lt: Float
+
+  """All values less than or equal the given value."""
+  usageHigh_lte: Float
+
+  """All values greater than the given value."""
+  usageHigh_gt: Float
+
+  """All values greater than or equal the given value."""
+  usageHigh_gte: Float
+  usageLow: Float
+
+  """All values that are not equal to given value."""
+  usageLow_not: Float
+
+  """All values that are contained in given list."""
+  usageLow_in: [Float!]
+
+  """All values that are not contained in given list."""
+  usageLow_not_in: [Float!]
+
+  """All values less than the given value."""
+  usageLow_lt: Float
+
+  """All values less than or equal the given value."""
+  usageLow_lte: Float
+
+  """All values greater than the given value."""
+  usageLow_gt: Float
+
+  """All values greater than or equal the given value."""
+  usageLow_gte: Float
+  returnHigh: Float
+
+  """All values that are not equal to given value."""
+  returnHigh_not: Float
+
+  """All values that are contained in given list."""
+  returnHigh_in: [Float!]
+
+  """All values that are not contained in given list."""
+  returnHigh_not_in: [Float!]
+
+  """All values less than the given value."""
+  returnHigh_lt: Float
+
+  """All values less than or equal the given value."""
+  returnHigh_lte: Float
+
+  """All values greater than the given value."""
+  returnHigh_gt: Float
+
+  """All values greater than or equal the given value."""
+  returnHigh_gte: Float
+  returnLow: Float
+
+  """All values that are not equal to given value."""
+  returnLow_not: Float
+
+  """All values that are contained in given list."""
+  returnLow_in: [Float!]
+
+  """All values that are not contained in given list."""
+  returnLow_not_in: [Float!]
+
+  """All values less than the given value."""
+  returnLow_lt: Float
+
+  """All values less than or equal the given value."""
+  returnLow_lte: Float
+
+  """All values greater than the given value."""
+  returnLow_gt: Float
+
+  """All values greater than or equal the given value."""
+  returnLow_gte: Float
+  avCurrentUsage: Float
+
+  """All values that are not equal to given value."""
+  avCurrentUsage_not: Float
+
+  """All values that are contained in given list."""
+  avCurrentUsage_in: [Float!]
+
+  """All values that are not contained in given list."""
+  avCurrentUsage_not_in: [Float!]
+
+  """All values less than the given value."""
+  avCurrentUsage_lt: Float
+
+  """All values less than or equal the given value."""
+  avCurrentUsage_lte: Float
+
+  """All values greater than the given value."""
+  avCurrentUsage_gt: Float
+
+  """All values greater than or equal the given value."""
+  avCurrentUsage_gte: Float
+  processingTime: Float
+
+  """All values that are not equal to given value."""
+  processingTime_not: Float
+
+  """All values that are contained in given list."""
+  processingTime_in: [Float!]
+
+  """All values that are not contained in given list."""
+  processingTime_not_in: [Float!]
+
+  """All values less than the given value."""
+  processingTime_lt: Float
+
+  """All values less than or equal the given value."""
+  processingTime_lte: Float
+
+  """All values greater than the given value."""
+  processingTime_gt: Float
+
+  """All values greater than or equal the given value."""
+  processingTime_gte: Float
+  dateRecorded: DateTime
+
+  """All values that are not equal to given value."""
+  dateRecorded_not: DateTime
+
+  """All values that are contained in given list."""
+  dateRecorded_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  dateRecorded_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  dateRecorded_lt: DateTime
+
+  """All values less than or equal the given value."""
+  dateRecorded_lte: DateTime
+
+  """All values greater than the given value."""
+  dateRecorded_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  dateRecorded_gte: DateTime
+  dateAddedToDatabase: DateTime
+
+  """All values that are not equal to given value."""
+  dateAddedToDatabase_not: DateTime
+
+  """All values that are contained in given list."""
+  dateAddedToDatabase_in: [DateTime!]
+
+  """All values that are not contained in given list."""
+  dateAddedToDatabase_not_in: [DateTime!]
+
+  """All values less than the given value."""
+  dateAddedToDatabase_lt: DateTime
+
+  """All values less than or equal the given value."""
+  dateAddedToDatabase_lte: DateTime
+
+  """All values greater than the given value."""
+  dateAddedToDatabase_gt: DateTime
+
+  """All values greater than or equal the given value."""
+  dateAddedToDatabase_gte: DateTime
+}
+
+input AverageMinuteWhereUniqueInput {
+  id: ID
+  dateRecorded: DateTime
 }
 
 type BatchPayload {
@@ -372,11 +1527,29 @@ input MeasurementWhereUniqueInput {
 
 type Mutation {
   createMeasurement(data: MeasurementCreateInput!): Measurement!
+  createAverageMinute(data: AverageMinuteCreateInput!): AverageMinute!
+  createAverageHour(data: AverageHourCreateInput!): AverageHour!
+  createAverageDay(data: AverageDayCreateInput!): AverageDay!
   updateMeasurement(data: MeasurementUpdateInput!, where: MeasurementWhereUniqueInput!): Measurement
+  updateAverageMinute(data: AverageMinuteUpdateInput!, where: AverageMinuteWhereUniqueInput!): AverageMinute
+  updateAverageHour(data: AverageHourUpdateInput!, where: AverageHourWhereUniqueInput!): AverageHour
+  updateAverageDay(data: AverageDayUpdateInput!, where: AverageDayWhereUniqueInput!): AverageDay
   deleteMeasurement(where: MeasurementWhereUniqueInput!): Measurement
+  deleteAverageMinute(where: AverageMinuteWhereUniqueInput!): AverageMinute
+  deleteAverageHour(where: AverageHourWhereUniqueInput!): AverageHour
+  deleteAverageDay(where: AverageDayWhereUniqueInput!): AverageDay
   upsertMeasurement(where: MeasurementWhereUniqueInput!, create: MeasurementCreateInput!, update: MeasurementUpdateInput!): Measurement!
+  upsertAverageMinute(where: AverageMinuteWhereUniqueInput!, create: AverageMinuteCreateInput!, update: AverageMinuteUpdateInput!): AverageMinute!
+  upsertAverageHour(where: AverageHourWhereUniqueInput!, create: AverageHourCreateInput!, update: AverageHourUpdateInput!): AverageHour!
+  upsertAverageDay(where: AverageDayWhereUniqueInput!, create: AverageDayCreateInput!, update: AverageDayUpdateInput!): AverageDay!
   updateManyMeasurements(data: MeasurementUpdateManyMutationInput!, where: MeasurementWhereInput): BatchPayload!
+  updateManyAverageMinutes(data: AverageMinuteUpdateManyMutationInput!, where: AverageMinuteWhereInput): BatchPayload!
+  updateManyAverageHours(data: AverageHourUpdateManyMutationInput!, where: AverageHourWhereInput): BatchPayload!
+  updateManyAverageDays(data: AverageDayUpdateManyMutationInput!, where: AverageDayWhereInput): BatchPayload!
   deleteManyMeasurements(where: MeasurementWhereInput): BatchPayload!
+  deleteManyAverageMinutes(where: AverageMinuteWhereInput): BatchPayload!
+  deleteManyAverageHours(where: AverageHourWhereInput): BatchPayload!
+  deleteManyAverageDays(where: AverageDayWhereInput): BatchPayload!
 }
 
 enum MutationType {
@@ -408,8 +1581,17 @@ type PageInfo {
 
 type Query {
   measurements(where: MeasurementWhereInput, orderBy: MeasurementOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Measurement]!
+  averageMinutes(where: AverageMinuteWhereInput, orderBy: AverageMinuteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AverageMinute]!
+  averageHours(where: AverageHourWhereInput, orderBy: AverageHourOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AverageHour]!
+  averageDays(where: AverageDayWhereInput, orderBy: AverageDayOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [AverageDay]!
   measurement(where: MeasurementWhereUniqueInput!): Measurement
+  averageMinute(where: AverageMinuteWhereUniqueInput!): AverageMinute
+  averageHour(where: AverageHourWhereUniqueInput!): AverageHour
+  averageDay(where: AverageDayWhereUniqueInput!): AverageDay
   measurementsConnection(where: MeasurementWhereInput, orderBy: MeasurementOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MeasurementConnection!
+  averageMinutesConnection(where: AverageMinuteWhereInput, orderBy: AverageMinuteOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AverageMinuteConnection!
+  averageHoursConnection(where: AverageHourWhereInput, orderBy: AverageHourOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AverageHourConnection!
+  averageDaysConnection(where: AverageDayWhereInput, orderBy: AverageDayOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AverageDayConnection!
 
   """Fetches an object given its ID"""
   node(
@@ -420,4 +1602,7 @@ type Query {
 
 type Subscription {
   measurement(where: MeasurementSubscriptionWhereInput): MeasurementSubscriptionPayload
+  averageMinute(where: AverageMinuteSubscriptionWhereInput): AverageMinuteSubscriptionPayload
+  averageHour(where: AverageHourSubscriptionWhereInput): AverageHourSubscriptionPayload
+  averageDay(where: AverageDaySubscriptionWhereInput): AverageDaySubscriptionPayload
 }

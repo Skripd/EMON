@@ -9,7 +9,7 @@ export class MqttService {
         keyPath: 'certs/private.pem.key',
         certPath: 'certs/certificate.pem.crt',
         caPath: 'certs/AmazonRootCA1.pem',
-        clientId: 'emon-server',
+        clientId: 'emon-server-locahost',
         host: 'a16v9t42ie8npd-ats.iot.eu-west-1.amazonaws.com',
         port: 8883,
         debug: true,

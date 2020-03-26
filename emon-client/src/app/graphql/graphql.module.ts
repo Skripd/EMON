@@ -36,8 +36,8 @@ export class GraphQLModule {
 
   private async checklogin() {
     await Promise.resolve(this.kcService.isLoggedIn()).then((loggedin) => {
-      if(loggedin) {
-        console.log('[GRAPHQL MODULE] [INIT] Logged in initializing up module.');          
+      if (loggedin) {
+        console.log('[GRAPHQL MODULE] [INIT] Logged in initializing up module.');
         this.setup();
       } else {
         console.log('[GRAPHQL MODULE] [INIT] Not logged in sleeping for 100ms');
@@ -68,16 +68,16 @@ export class GraphQLModule {
     // Error handling for GraphQL client
     const error = onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
-        graphQLErrors.map(({ message, locations, path }) => {          
+        graphQLErrors.map(({ message, locations, path }) => {
           const ua = JSON.parse(JSON.stringify(message)) as StatusCodeError;
           if (ua.statusCode) {
             switch (ua.statusCode) {
               case 401: this.alert.addAlert('You are not authenticated reload this page', 'danger');
-              break;
+                        break;
               case 403: this.alert.addAlert('You do not have permission to access this', 'danger');
-              break;
+                        break;
               default: console.log('[GraphQL Error Handler] [StatusCode Unhandled Error] message:', ua);
-              break;
+                       break;
             }
           }
         });
@@ -93,13 +93,13 @@ export class GraphQLModule {
         reconnect: true,
         connectionParams: async () => {
           const token = await this.kcService.getToken();
-          
+
           return {
             isWebSocket: true,
             headers: {
               authorization: `Bearer ${token}`,
             }
-          }
+          };
         },
         // connectionCallback: (error, result) => {
         //   if(error) {
@@ -111,13 +111,13 @@ export class GraphQLModule {
         // lazy: true
       },
     });
-    
+
     const link = error.concat(auth).concat(basic);
     const wsLink = error.concat(ws);
     const linkWithWebsocket = split(
       // split based on operation type
       ({ query }) => {
-        let definition = getMainDefinition(query);
+        const definition = getMainDefinition(query);
         return definition.kind === 'OperationDefinition' && definition.operation === 'subscription';
       },
       wsLink,

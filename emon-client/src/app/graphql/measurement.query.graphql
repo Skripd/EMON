@@ -1,0 +1,7 @@
+query getPowerUsagePage($last: Int!){
+  measurements(last: $last) {
+    id
+    dateRecorded
+    currentUsage
+  }
+}

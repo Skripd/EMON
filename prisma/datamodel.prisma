@@ -9,3 +9,42 @@ type Measurement {
   dateRecorded: DateTime! @unique
   dateAddedToDatabase: DateTime! @createdAt
 }
+
+type AverageMinute {
+  id: ID! @id
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime! @unique
+  dateAddedToDatabase: DateTime! @createdAt
+}
+
+type AverageHour {
+  id: ID! @id
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime! @unique
+  dateAddedToDatabase: DateTime! @createdAt
+}
+
+type AverageDay {
+  id: ID! @id
+  avGasUsage: Float!
+  usageHigh: Float!
+  usageLow: Float!
+  returnHigh: Float!
+  returnLow: Float!
+  avCurrentUsage: Float!
+  processingTime: Float!
+  dateRecorded: DateTime! @unique
+  dateAddedToDatabase: DateTime! @createdAt
+}
